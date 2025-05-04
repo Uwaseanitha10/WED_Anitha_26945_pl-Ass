@@ -94,19 +94,37 @@ The BPMN diagram models the workflow of a Real-Time Disaster Management Informat
 
 
 
+PHASE III
+-----------
 
-PHASE 3: Logical Data Model Design
+
+
+
+Logical Data Model Design
 Entity Descriptions
+
 Disaster: Tracks disaster details (e.g., type, magnitude, location).
+
 Location: Stores geographical data (e.g., country, state, city).
+
 Prediction: Logs disaster predictions (e.g., type, risk level).
+
 Weather Condition: Records weather-related data (e.g., temperature, rainfall).
+
 Preparedness Measure: Explains strategies against disasters.
+
 Historical Disaster Data: Maintains past disaster history records.
+
 Entity-Relationship Diagram (ERD)
+
 The ER diagram will map the following types of relationships:
+
+
 
 One-to-many relationships between disasters and locations.
 Many-to-one relationships between predictions and locations.
 Many-to-many relationships between historical data, disasters, and locations.
+
+
+<img width="587" alt="iriza" src="https://github.com/user-attachments/assets/ba3005a5-4e5a-4172-9732-10ddd4f0a3a1" />
 
