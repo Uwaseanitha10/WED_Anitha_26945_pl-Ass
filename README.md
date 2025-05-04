@@ -83,3 +83,30 @@ One-Page Explanation
 
 
 The BPMN diagram models the workflow of a Real-Time Disaster Management Information System (DMIS) designed to detect and respond to environmental disasters. It begins with data collection from a network of environmental sensors that stream live information to the system. The MIS Core System analyzes this data in real-time to detect anomalies that may indicate an impending disaster. If thresholds are exceeded, the system triggers alerts through the Disaster Alert System, which notifies Emergency Response Agencies and the Government Command Center. Emergency responders take swift action by deploying teams and equipment, while the government oversees the national response and makes strategic decisions. If the disaster is large-scale or cross-border, data is automatically shared with International Agencies for broader coordination and support. The system ensures fast, informed decision-making and allows for data-driven, collaborative disaster response. The swimlane structure ensures role clarity, and the logical flow maps all major decisions, responses, and data-sharing activities clearly and consistently, making this system a vital part of modern MIS for crisis management.
+
+
+
+
+
+
+
+
+
+
+
+
+PHASE 3: Logical Data Model Design
+Entity Descriptions
+Disaster: Tracks disaster details (e.g., type, magnitude, location).
+Location: Stores geographical data (e.g., country, state, city).
+Prediction: Logs disaster predictions (e.g., type, risk level).
+Weather Condition: Records weather-related data (e.g., temperature, rainfall).
+Preparedness Measure: Explains strategies against disasters.
+Historical Disaster Data: Maintains past disaster history records.
+Entity-Relationship Diagram (ERD)
+The ER diagram will map the following types of relationships:
+
+One-to-many relationships between disasters and locations.
+Many-to-one relationships between predictions and locations.
+Many-to-many relationships between historical data, disasters, and locations.
+
