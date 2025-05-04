@@ -29,12 +29,25 @@ Effective collaboration between national and international stakeholders.
    Identify Key Entities
    
 Entity	Role & Responsibilities
+
 Sensor Network	Collects real-time data from the environment (e.g., temperature, water levels, seismic activity).
+
+
 MIS Core System	Aggregates, filters, and analyzes data; identifies potential disasters.
+
+
 Disaster Alert System	Sends alerts to emergency responders, citizens, and government agencies.
+
+
 Emergency Response Agency	Activates response plans, dispatches personnel and equipment, coordinates local rescue and relief.
+
+
 Government Command Center	Makes strategic decisions, allocates national resources, manages public communication.
+
+
 International Agencies	Receives shared data for cross-border response coordination and global disaster support.
+
+
 
   Use Swimlanes for Clarity
   
