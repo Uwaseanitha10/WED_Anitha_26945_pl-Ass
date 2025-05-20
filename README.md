@@ -126,5 +126,5 @@ Many-to-one relationships between predictions and locations.
 Many-to-many relationships between historical data, disasters, and locations.
 
 
-<img width="587" alt="iriza" src="https://github.com/user-attachments/assets/ba3005a5-4e5a-4172-9732-10ddd4f0a3a1" />
+
 
