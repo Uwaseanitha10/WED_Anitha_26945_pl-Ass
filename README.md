@@ -228,7 +228,9 @@ VALUES (204, 'Rwanda', 'Eastern Province', 'Rwamagana');
 
 INSERT INTO Location (Location_ID, Country, State, City)
 VALUES (205, 'Rwanda', 'Southern Province', 'Huye');
-```
+
+```<img width="686" alt="location" src="https://github.com/user-attachments/assets/8cd3045a-8f20-4603-9987-5d980258c5e5" />
+
 
 ### insert into disaster
 ```sql
@@ -237,6 +239,8 @@ INSERT INTO Disaster VALUES (302, 'Landslide', TO_DATE('2022-11-05', 'YYYY-MM-DD
 INSERT INTO Disaster VALUES (303, 'Storm', TO_DATE('2023-08-21', 'YYYY-MM-DD'), 5.0, 203);
 INSERT INTO Disaster VALUES (304, 'Heavy Rainfall', TO_DATE('2023-12-10', 'YYYY-MM-DD'), 4.7, 204);
 INSERT INTO Disaster VALUES (305, 'Earthquake', TO_DATE('2024-02-18', 'YYYY-MM-DD'), 5.3, 205);
+ <img width="719" alt="ttt" src="https://github.com/user-attachments/assets/fb7650ef-51fb-4a66-9798-f5bb4e397628" />
+
 ```
 
 ### insert into prediction
@@ -247,6 +251,9 @@ INSERT INTO Predictions VALUES (503, 'Storm', TO_DATE('2024-07-20', 'YYYY-MM-DD'
 INSERT INTO Predictions VALUES (504, 'Heavy Rainfall', TO_DATE('2024-08-25', 'YYYY-MM-DD'), 'Medium', 'Radar Data Pattern', 204);
 INSERT INTO Predictions VALUES (505, 'Earthquake', TO_DATE('2024-09-30', 'YYYY-MM-DD'), 'Low', 'Seismic History Mapping', 205);
 
+<img width="814" alt="prediction" src="https://github.com/user-attachments/assets/d5f425dc-79c8-44ce-aa31-454b45092b05" />
+
+
 ```
 ### insert into weather condition 
 ```sql
@@ -256,6 +263,8 @@ INSERT INTO Weather_Conditions VALUES (403, 203, 23.1, 90.7);
 INSERT INTO Weather_Conditions VALUES (404, 204, 24.0, 130.2);
 INSERT INTO Weather_Conditions VALUES (405, 205, 21.7, 125.5);
 ```
+<img width="825" alt="weather_condition" src="https://github.com/user-attachments/assets/319bb64b-0bee-4bd5-b0f4-24f8491c869c" />
+
 #### insert into hawk_movement
 ```sql
 INSERT INTO Hawk_Movement VALUES (601, 501, 'Nyungwe Forest', 'West', 112.5, TO_DATE('2024-05-11 08:00:00', 'YYYY-MM-DD HH24:MI:SS'));
@@ -264,6 +273,8 @@ INSERT INTO Hawk_Movement VALUES (603, 503, 'Akagera Wetlands', 'East', 125.0, T
 INSERT INTO Hawk_Movement VALUES (604, 504, 'Gishwati Reserve', 'Southwest', 87.4, TO_DATE('2024-08-26 10:45:00', 'YYYY-MM-DD HH24:MI:SS'));
 INSERT INTO Hawk_Movement VALUES (605, 505, 'Huye Highlands', 'South', 102.8, TO_DATE('2024-10-01 06:00:00', 'YYYY-MM-DD HH24:MI:SS'));
 ```
+
+<img width="831" alt="hawks movement" src="https://github.com/user-attachments/assets/d4efe813-0548-4397-8ce2-d1158e1e8022" />
 
 ## Data Integrity
 To guarantee consistency, accuracy, and validity of data throughout the system, the following practices were implemented:
@@ -360,6 +371,8 @@ FROM
 JOIN 
     Predictions p ON h.Prediction_ID = p.Prediction_ID;
 ```
+<img width="844" alt="window function" src="https://github.com/user-attachments/assets/1479e97c-8ab8-4ae2-9b4f-c5f947d51406" />
+
 ###  Procedures and Functions
 ```sql
 CREATE OR REPLACE PROCEDURE Get_Hawk_By_Risk (
@@ -378,22 +391,28 @@ EXCEPTION
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
 END;
+<img width="835" alt="procedure" src="https://github.com/user-attachments/assets/43ed4aec-c478-4df8-ab48-45e5515ee3da" />
+
 ```
 ### Testing and Validation
 ```sql
 BEGIN
-    Get_Hawk_By_Risk('High');
+  HawkAnalytics.Get_Hawk_By_Risk('High');
 END;
+
 ```
 ### Test the Function
+```sql
 SELECT Total_Migration(501) AS Total_Distance FROM dual;
-
+```
 ### Packages
 
+```sql
 CREATE OR REPLACE PACKAGE HawkAnalytics AS
     PROCEDURE Get_Hawk_By_Risk(risk IN VARCHAR2);
     FUNCTION Total_Migration(pred_id IN NUMBER) RETURN NUMBER;
 END HawkAnalytics;
+```
 ### package body
 ```sql
 CREATE OR REPLACE PACKAGE BODY HawkAnalytics AS
