@@ -229,7 +229,8 @@ VALUES (204, 'Rwanda', 'Eastern Province', 'Rwamagana');
 INSERT INTO Location (Location_ID, Country, State, City)
 VALUES (205, 'Rwanda', 'Southern Province', 'Huye');
 
-```<img width="686" alt="location" src="https://github.com/user-attachments/assets/8cd3045a-8f20-4603-9987-5d980258c5e5" />
+```
+<img width="686" alt="location" src="https://github.com/user-attachments/assets/8cd3045a-8f20-4603-9987-5d980258c5e5" />
 
 
 ### insert into disaster
@@ -239,9 +240,10 @@ INSERT INTO Disaster VALUES (302, 'Landslide', TO_DATE('2022-11-05', 'YYYY-MM-DD
 INSERT INTO Disaster VALUES (303, 'Storm', TO_DATE('2023-08-21', 'YYYY-MM-DD'), 5.0, 203);
 INSERT INTO Disaster VALUES (304, 'Heavy Rainfall', TO_DATE('2023-12-10', 'YYYY-MM-DD'), 4.7, 204);
 INSERT INTO Disaster VALUES (305, 'Earthquake', TO_DATE('2024-02-18', 'YYYY-MM-DD'), 5.3, 205);
- <img width="719" alt="ttt" src="https://github.com/user-attachments/assets/fb7650ef-51fb-4a66-9798-f5bb4e397628" />
+ 
 
 ```
+<img width="719" alt="ttt" src="https://github.com/user-attachments/assets/fb7650ef-51fb-4a66-9798-f5bb4e397628" />
 
 ### insert into prediction
 ```sql
@@ -250,11 +252,9 @@ INSERT INTO Predictions VALUES (502, 'Landslide', TO_DATE('2024-06-15', 'YYYY-MM
 INSERT INTO Predictions VALUES (503, 'Storm', TO_DATE('2024-07-20', 'YYYY-MM-DD'), 'High', 'Wind Speed Trend Analysis', 203);
 INSERT INTO Predictions VALUES (504, 'Heavy Rainfall', TO_DATE('2024-08-25', 'YYYY-MM-DD'), 'Medium', 'Radar Data Pattern', 204);
 INSERT INTO Predictions VALUES (505, 'Earthquake', TO_DATE('2024-09-30', 'YYYY-MM-DD'), 'Low', 'Seismic History Mapping', 205);
-
+```
 <img width="814" alt="prediction" src="https://github.com/user-attachments/assets/d5f425dc-79c8-44ce-aa31-454b45092b05" />
 
-
-```
 ### insert into weather condition 
 ```sql
 INSERT INTO Weather_Conditions VALUES (401, 201, 22.5, 140.0);
