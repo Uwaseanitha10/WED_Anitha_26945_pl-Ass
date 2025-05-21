@@ -144,5 +144,68 @@ PHASE V: TABLE IMPLEMENTATION AND DATA INSERTION
 ----------------------------------------------------
 
 
+Phase Five focuses on implementing the physical structure of the Hawk Prediction Analytics database within Oracle and populating it with meaningful data. The goal is to transform the logical design created in earlier phases into a fully functional database that supports real-world queries and analytical operations, while maintaining data integrity.
 
+### Table Creation
+The database WED_26945_Anitha includes all the required tables aligned with the project scope. These tables are:
 
+#### Location
+```sql
+CREATE TABLE Location (
+    Location_ID INT PRIMARY KEY,
+    Country VARCHAR2(50) NOT NULL,
+    State VARCHAR2(50),
+    City VARCHAR2(50)
+);
+```
+#### Disaster
+
+```sql
+CREATE TABLE Disaster (
+    Disaster_ID INT PRIMARY KEY,
+    Disaster_Type VARCHAR2(50) NOT NULL,
+    Date DATE NOT NULL,
+    Magnitude DECIMAL(4,2),
+    Location_ID INT,
+    FOREIGN KEY (Location_ID) REFERENCES Location(Location_ID)
+);
+```
+
+#### Weather_Conditions
+```sql
+CREATE TABLE Weather_Conditions (
+    Condition_ID INT PRIMARY KEY,
+    Location_ID INT,
+    Temperature DECIMAL(5,2),
+    Rainfall DECIMAL(5,2) DEFAULT 0,
+    FOREIGN KEY (Location_ID) REFERENCES Location(Location_ID)
+);
+```
+#### Prediction
+```sql
+
+CREATE TABLE Predictions (
+    Prediction_ID INT PRIMARY KEY,
+    Disaster_Type VARCHAR2(50),
+    Predicted_Date DATE NOT NULL,
+    Risk_Level VARCHAR2(10),
+    Prediction_Method VARCHAR2(100),
+    Predicted_Location_ID INT,
+    FOREIGN KEY (Predicted_Location_ID) REFERENCES Location(Location_ID),
+    CHECK (Risk_Level IN ('Low', 'Medium', 'High'))
+);
+```
+#### Hawk_Movement
+
+```sql
+
+CREATE TABLE Hawk_Movement (
+    Movement_ID INT PRIMARY KEY,
+    Prediction_ID INT,
+    Region VARCHAR2(100),
+    Flight_Direction VARCHAR2(50),
+    Distance_Migrated DECIMAL(6,2),
+    Timestamp DATE,
+    FOREIGN KEY (Prediction_ID) REFERENCES Predictions(Prediction_ID)
+);
+```
