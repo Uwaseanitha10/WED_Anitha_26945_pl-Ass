@@ -256,3 +256,12 @@ INSERT INTO Weather_Conditions VALUES (403, 203, 23.1, 90.7);
 INSERT INTO Weather_Conditions VALUES (404, 204, 24.0, 130.2);
 INSERT INTO Weather_Conditions VALUES (405, 205, 21.7, 125.5);
 ```
+####insert into hawk_movement
+```sql
+INSERT INTO Hawk_Movement VALUES (601, 501, 'Nyungwe Forest', 'West', 112.5, TO_DATE('2024-05-11 08:00:00', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO Hawk_Movement VALUES (602, 502, 'Volcanoes Park', 'Northwest', 98.3, TO_DATE('2024-06-16 09:30:00', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO Hawk_Movement VALUES (603, 503, 'Akagera Wetlands', 'East', 125.0, TO_DATE('2024-07-21 07:15:00', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO Hawk_Movement VALUES (604, 504, 'Gishwati Reserve', 'Southwest', 87.4, TO_DATE('2024-08-26 10:45:00', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO Hawk_Movement VALUES (605, 505, 'Huye Highlands', 'South', 102.8, TO_DATE('2024-10-01 06:00:00', 'YYYY-MM-DD HH24:MI:SS'));
+```
+
