@@ -297,3 +297,136 @@ JOIN Predictions p ON h.Prediction_ID = p.Prediction_ID;
 ### Physical Database Structure
 The physical structure of the database was built directly from the logical model created in Phase Three, with enhancements to ensure optimal storage, relationships, and indexing support for query operations.
 
+### Appropriate Data Types:
+
+NUMBER used for identifiers and magnitudes
+
+VARCHAR2 used for names, directions, and region fields
+
+DATE and TIMESTAMP used for disaster dates and movement tracking
+
+
+### Primary Keys and Foreign Keys:
+
+Every table includes a clearly defined PRIMARY KEY (e.g., Location_ID, Disaster_ID, Prediction_ID)
+
+Foreign keys are defined to connect dependent data across tables, such as Location_ID in Disaster, and Prediction_ID in Hawk_Movement
+
+Constraints for Data Validity:
+
+NOT NULL constraints enforce required values (e.g., Country, Predicted_Date)
+
+CHECK constraints on columns like Risk_Level to limit acceptable values
+
+UNIQUE constraints ensure identifiers are not duplicated
+
+### Indexing:
+
+Indexes may be added on frequently joined or searched columns like Prediction_ID, Location_ID for performance enhancement
+
+
+
+### PHASE IV:  Database Interaction and Transactions 
+
+DDL Operations:
+```sql
+
+ALTER TABLE Hawk_Movement ADD Wind_Speed NUMBER(5,2);
+```
+ DML Operations:
+ ```sql
+
+INSERT INTO Hawk_Movement VALUES (
+   606, 501, 'Nyabarongo Swamp', 'South', 110.5, TO_DATE('2024-05-12 09:00:00', 'YYYY-MM-DD HH24:MI:SS'), 18.6
+);
+
+
+UPDATE Predictions SET Prediction_Method = 'Updated Forecast Model' WHERE Prediction_ID = 501;
+
+
+DELETE FROM Weather_Conditions WHERE Condition_ID = 405;
+```
+### Problem Statement for Analytics
+ Use of Window Functions:
+ ```sql
+SELECT 
+    p.Disaster_Type,
+    p.Risk_Level,
+    h.Region,
+    h.Distance_Migrated,
+    RANK() OVER (PARTITION BY p.Disaster_Type ORDER BY h.Distance_Migrated DESC) AS Distance_Rank
+FROM 
+    Hawk_Movement h
+JOIN 
+    Predictions p ON h.Prediction_ID = p.Prediction_ID;
+```
+###  Procedures and Functions
+```sql
+CREATE OR REPLACE PROCEDURE Get_Hawk_By_Risk (
+    risk IN VARCHAR2
+) AS
+BEGIN
+    FOR rec IN (
+        SELECT h.Region, h.Distance_Migrated, p.Risk_Level
+        FROM Hawk_Movement h
+        JOIN Predictions p ON h.Prediction_ID = p.Prediction_ID
+        WHERE p.Risk_Level = risk
+    ) LOOP
+        DBMS_OUTPUT.PUT_LINE('Region: ' || rec.Region || ' | Distance: ' || rec.Distance_Migrated);
+    END LOOP;
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+END;
+```
+### Testing and Validation
+```sql
+BEGIN
+    Get_Hawk_By_Risk('High');
+END;
+```
+### Test the Function
+SELECT Total_Migration(501) AS Total_Distance FROM dual;
+
+### Packages
+
+CREATE OR REPLACE PACKAGE HawkAnalytics AS
+    PROCEDURE Get_Hawk_By_Risk(risk IN VARCHAR2);
+    FUNCTION Total_Migration(pred_id IN NUMBER) RETURN NUMBER;
+END HawkAnalytics;
+### package body
+```sql
+CREATE OR REPLACE PACKAGE BODY HawkAnalytics AS
+    PROCEDURE Get_Hawk_By_Risk(risk IN VARCHAR2) IS
+    BEGIN
+        FOR rec IN (
+            SELECT h.Region, h.Distance_Migrated, p.Risk_Level
+            FROM Hawk_Movement h
+            JOIN Predictions p ON h.Prediction_ID = p.Prediction_ID
+            WHERE p.Risk_Level = risk
+        ) LOOP
+            DBMS_OUTPUT.PUT_LINE('Region: ' || rec.Region || ' | Distance: ' || rec.Distance_Migrated);
+        END LOOP;
+    EXCEPTION
+        WHEN OTHERS THEN
+            DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+    END;
+
+    FUNCTION Total_Migration(pred_id IN NUMBER) RETURN NUMBER IS
+        total NUMBER;
+    BEGIN
+        SELECT SUM(Distance_Migrated)
+        INTO total
+        FROM Hawk_Movement
+        WHERE Prediction_ID = pred_id;
+        
+        RETURN total;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN RETURN 0;
+        WHEN OTHERS THEN RETURN -1;
+    END;
+
+END HawkAnalytics;
+```
+
+
