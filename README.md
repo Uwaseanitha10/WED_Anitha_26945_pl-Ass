@@ -209,3 +209,50 @@ CREATE TABLE Hawk_Movement (
     FOREIGN KEY (Prediction_ID) REFERENCES Predictions(Prediction_ID)
 );
 ```
+###  Data Insertion
+Each table was populated with five realistic data entries, based on environmental and ecological data relevant to Rwanda, where various disasters and hawk movement patterns were recorded. This inserted data reflects typical use cases described in Phase One and supports predictive modeling for disaster response and ecological tracking.
+
+### insert into loacation
+```sql
+INSERT INTO Location (Location_ID, Country, State, City)
+VALUES (201, 'Rwanda', 'Kigali City', 'Kigali');
+
+INSERT INTO Location (Location_ID, Country, State, City)
+VALUES (202, 'Rwanda', 'Northern Province', 'Musanze');
+
+INSERT INTO Location (Location_ID, Country, State, City)
+VALUES (203, 'Rwanda', 'Western Province', 'Rubavu');
+
+INSERT INTO Location (Location_ID, Country, State, City)
+VALUES (204, 'Rwanda', 'Eastern Province', 'Rwamagana');
+
+INSERT INTO Location (Location_ID, Country, State, City)
+VALUES (205, 'Rwanda', 'Southern Province', 'Huye');
+```
+
+###insert into disaster
+```sql
+INSERT INTO Disaster VALUES (301, 'Flood', TO_DATE('2023-03-12', 'YYYY-MM-DD'), 4.2, 201);
+INSERT INTO Disaster VALUES (302, 'Landslide', TO_DATE('2022-11-05', 'YYYY-MM-DD'), 3.8, 202);
+INSERT INTO Disaster VALUES (303, 'Storm', TO_DATE('2023-08-21', 'YYYY-MM-DD'), 5.0, 203);
+INSERT INTO Disaster VALUES (304, 'Heavy Rainfall', TO_DATE('2023-12-10', 'YYYY-MM-DD'), 4.7, 204);
+INSERT INTO Disaster VALUES (305, 'Earthquake', TO_DATE('2024-02-18', 'YYYY-MM-DD'), 5.3, 205);
+```
+
+###insert into prediction
+```sql
+INSERT INTO Predictions VALUES (501, 'Flood', TO_DATE('2024-05-10', 'YYYY-MM-DD'), 'High', 'Rainfall Forecast Model', 201);
+INSERT INTO Predictions VALUES (502, 'Landslide', TO_DATE('2024-06-15', 'YYYY-MM-DD'), 'Medium', 'Soil Saturation Index', 202);
+INSERT INTO Predictions VALUES (503, 'Storm', TO_DATE('2024-07-20', 'YYYY-MM-DD'), 'High', 'Wind Speed Trend Analysis', 203);
+INSERT INTO Predictions VALUES (504, 'Heavy Rainfall', TO_DATE('2024-08-25', 'YYYY-MM-DD'), 'Medium', 'Radar Data Pattern', 204);
+INSERT INTO Predictions VALUES (505, 'Earthquake', TO_DATE('2024-09-30', 'YYYY-MM-DD'), 'Low', 'Seismic History Mapping', 205);
+
+```
+###insert into weather condition 
+```sql
+INSERT INTO Weather_Conditions VALUES (401, 201, 22.5, 140.0);
+INSERT INTO Weather_Conditions VALUES (402, 202, 20.8, 110.3);
+INSERT INTO Weather_Conditions VALUES (403, 203, 23.1, 90.7);
+INSERT INTO Weather_Conditions VALUES (404, 204, 24.0, 130.2);
+INSERT INTO Weather_Conditions VALUES (405, 205, 21.7, 125.5);
+```
