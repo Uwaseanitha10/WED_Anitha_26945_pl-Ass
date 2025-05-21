@@ -93,9 +93,9 @@ The BPMN diagram models the workflow of a Real-Time Disaster Management Informat
 
 
 
-
+------------------------
 PHASE III
------------
+------------------------
 
 
 
@@ -117,13 +117,31 @@ Historical Disaster Data: Maintains past disaster history records.
 
 Entity-Relationship Diagram (ERD)
 
-The ER diagram will map the following types of relationships:
+The ER diagram will show the types of relationships:
 
 
 
 One-to-many relationships between disasters and locations.
 Many-to-one relationships between predictions and locations.
 Many-to-many relationships between historical data, disasters, and locations.
+
+
+---------------------------------------------
+PHASE IV CREATING AND NAMING THE DATABASE
+---------------------------------------------
+Username: wed_26945_anitha_hawksprediction
+password: anitha
+Physical Database structure
+1. tables created : location, disaster, prediction, hawk_movement, weather_condition
+2.  Relationshps: the tables are related with foreign key to maintain referential intergrity.
+3.  constraints: primary keys , foreign keys, and unique  keys are imposed
+
+
+
+
+----------------------------------------------------
+PHASE V: TABLE IMPLEMENTATION AND DATA INSERTION
+----------------------------------------------------
 
 
 
