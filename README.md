@@ -230,7 +230,7 @@ INSERT INTO Location (Location_ID, Country, State, City)
 VALUES (205, 'Rwanda', 'Southern Province', 'Huye');
 ```
 
-###insert into disaster
+### insert into disaster
 ```sql
 INSERT INTO Disaster VALUES (301, 'Flood', TO_DATE('2023-03-12', 'YYYY-MM-DD'), 4.2, 201);
 INSERT INTO Disaster VALUES (302, 'Landslide', TO_DATE('2022-11-05', 'YYYY-MM-DD'), 3.8, 202);
@@ -239,7 +239,7 @@ INSERT INTO Disaster VALUES (304, 'Heavy Rainfall', TO_DATE('2023-12-10', 'YYYY-
 INSERT INTO Disaster VALUES (305, 'Earthquake', TO_DATE('2024-02-18', 'YYYY-MM-DD'), 5.3, 205);
 ```
 
-###insert into prediction
+### insert into prediction
 ```sql
 INSERT INTO Predictions VALUES (501, 'Flood', TO_DATE('2024-05-10', 'YYYY-MM-DD'), 'High', 'Rainfall Forecast Model', 201);
 INSERT INTO Predictions VALUES (502, 'Landslide', TO_DATE('2024-06-15', 'YYYY-MM-DD'), 'Medium', 'Soil Saturation Index', 202);
@@ -248,7 +248,7 @@ INSERT INTO Predictions VALUES (504, 'Heavy Rainfall', TO_DATE('2024-08-25', 'YY
 INSERT INTO Predictions VALUES (505, 'Earthquake', TO_DATE('2024-09-30', 'YYYY-MM-DD'), 'Low', 'Seismic History Mapping', 205);
 
 ```
-###insert into weather condition 
+### insert into weather condition 
 ```sql
 INSERT INTO Weather_Conditions VALUES (401, 201, 22.5, 140.0);
 INSERT INTO Weather_Conditions VALUES (402, 202, 20.8, 110.3);
@@ -256,7 +256,7 @@ INSERT INTO Weather_Conditions VALUES (403, 203, 23.1, 90.7);
 INSERT INTO Weather_Conditions VALUES (404, 204, 24.0, 130.2);
 INSERT INTO Weather_Conditions VALUES (405, 205, 21.7, 125.5);
 ```
-####insert into hawk_movement
+#### insert into hawk_movement
 ```sql
 INSERT INTO Hawk_Movement VALUES (601, 501, 'Nyungwe Forest', 'West', 112.5, TO_DATE('2024-05-11 08:00:00', 'YYYY-MM-DD HH24:MI:SS'));
 INSERT INTO Hawk_Movement VALUES (602, 502, 'Volcanoes Park', 'Northwest', 98.3, TO_DATE('2024-06-16 09:30:00', 'YYYY-MM-DD HH24:MI:SS'));
@@ -264,4 +264,36 @@ INSERT INTO Hawk_Movement VALUES (603, 503, 'Akagera Wetlands', 'East', 125.0, T
 INSERT INTO Hawk_Movement VALUES (604, 504, 'Gishwati Reserve', 'Southwest', 87.4, TO_DATE('2024-08-26 10:45:00', 'YYYY-MM-DD HH24:MI:SS'));
 INSERT INTO Hawk_Movement VALUES (605, 505, 'Huye Highlands', 'South', 102.8, TO_DATE('2024-10-01 06:00:00', 'YYYY-MM-DD HH24:MI:SS'));
 ```
+
+## Data Integrity
+To guarantee consistency, accuracy, and validity of data throughout the system, the following practices were implemented:
+
+### Referential Integrity:
+
+All FOREIGN KEY constraints ensure that dependent tables (e.g., Disaster, Predictions, Hawk_Movement) only accept valid references from primary tables (Location, Predictions).
+
+### Check Constraints:
+
+The Risk_Level in the Predictions table uses a CHECK constraint to allow only 'Low', 'Medium', or 'High'.
+
+NOT NULL Constraints:
+
+Primary key and essential fields (like Country, Predicted_Date, etc.) were declared NOT NULL to avoid missing values.
+Unique Identifiers:
+
+Each table includes unique ID columns (e.g., Location_ID, Prediction_ID) for unambiguous record identification.
+Data Validation Queries:
+
+Joined queries were tested to confirm relational accuracy (e.g., INNER JOIN between Hawk_Movement and Predictions only returns matching data).
+
+### Example validation query:
+```sql
+SELECT h.Movement_ID, h.Region, p.Risk_Level
+FROM Hawk_Movement h
+JOIN Predictions p ON h.Prediction_ID = p.Prediction_ID;
+```
+
+
+### Physical Database Structure
+The physical structure of the database was built directly from the logical model created in Phase Three, with enhancements to ensure optimal storage, relationships, and indexing support for query operations.
 
