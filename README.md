@@ -449,3 +449,81 @@ END HawkAnalytics;
 ```
 
 
+### PHASE VII
+
+
+The Hawk Prediction Analytics system processes real-time ecological and weather data to predict hawk behavior during disasters. However, unauthorized or ill-timed updates to the prediction and migration records could compromise data accuracy. To address this, advanced PL/SQL features such as triggers and auditing mechanisms are required to enforce timing restrictions and track all modification attempts for sensitive tables.
+
+ ### Justification for Triggers, Packages, and Auditing:
+Triggers are required to restrict INSERT, UPDATE, and DELETE operations during weekdays and public holidays.
+
+Packages automate logic to check date conditions and log actions.
+
+Auditing ensures traceability of all user interactions with the system for accountability
+
+### Restriction Rule:
+Block DML operations (INSERT, UPDATE, DELETE) from Monday to Friday
+
+Block all such activity on public holidays listed in a holiday reference table for the upcoming month
+
+ ### Trigger Implementation
+ ```sql
+CREATE TABLE Public_Holidays (
+    Holiday_Date DATE PRIMARY KEY,
+    Description VARCHAR2(100)
+);
+```
+### Simple BEFORE INSERT Trigger (example for Hawk_Movement)
+```sql
+CREATE OR REPLACE TRIGGER trg_block_weekday_inserts
+BEFORE INSERT OR UPDATE OR DELETE ON Hawk_Movement
+FOR EACH ROW
+DECLARE
+    v_day VARCHAR2(10);
+    v_today DATE := TRUNC(SYSDATE);
+    v_count NUMBER;
+BEGIN
+    -- Get the day name
+    SELECT TO_CHAR(v_today, 'DY') INTO v_day FROM dual;
+
+    -- Check if today is in holiday list
+    SELECT COUNT(*) INTO v_count
+    FROM Public_Holidays
+    WHERE Holiday_Date = v_today;
+
+    -- Block if it's a weekday (Mon–Fri) or holiday
+    IF v_day IN ('MON', 'TUE', 'WED', 'THU', 'FRI') OR v_count > 0 THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Modifications not allowed on weekdays or holidays.');
+    END IF;
+END;
+```
+### Compound Trigger (for complex insert logging)
+```sql
+CREATE OR REPLACE TRIGGER trg_audit_hawk_movement
+FOR INSERT OR UPDATE OR DELETE ON Hawk_Movement
+COMPOUND TRIGGER
+    -- Variables to collect audit details
+    TYPE t_audit IS TABLE OF VARCHAR2(500) INDEX BY PLS_INTEGER;
+    v_log t_audit;
+    i INTEGER := 0;
+
+AFTER EACH ROW IS
+BEGIN
+    i := i + 1;
+    v_log(i) := USER || ' performed ' || ORA_SYSEVENT || 
+                ' on Hawk_Movement at ' || TO_CHAR(SYSDATE, 'DD-MON-YYYY HH24:MI:SS');
+END AFTER EACH ROW;
+
+AFTER STATEMENT IS
+BEGIN
+    FOR j IN 1..v_log.COUNT LOOP
+        INSERT INTO Audit_Log (User_ID, Action_Time, Operation, Status)
+        VALUES (USER, SYSDATE, v_log(j), 'Allowed');
+    END LOOP;
+END AFTER STATEMENT;
+
+END trg_audit_hawk_movement;
+```
+
+
+
