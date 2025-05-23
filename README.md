@@ -1,96 +1,178 @@
-PHASE II
------------------
+### NAMES :UWASE Anitha
+### ID: 26945
+
+
+### : Hawk Prediction Analytics in a Complex Environment
+
+
+###  Problem Statement and Project Overview
+### 🔍 Problem Definition
+Frequent natural disasters disrupt hawk migration and habitat safety.
+
+Lack of real-time analytics for conservation efforts during disasters.
+
+Manual tracking leads to data loss and delayed response.
+
+### 🌍 Context of Use
+Wildlife research centers and disaster management agencies.
+
+Real-time monitoring needed during natural events (e.g., storms, wildfires).
+
+Integrated into conservation systems and public safety alerts.
+
+### 🎯 Target Users
+Wildlife researchers and ecologists
+
+Disaster response teams
+
+Conservation organizations
+
+Government agencies
+
+### 🎯 Project Goals
+Forecast hawk movement during disasters using weather data.
+
+Automate migration alerts and danger zone mapping.
+
+Enhance accuracy and speed of conservation decisions.
+
+Secure and organize tracking data in a PL/SQL database.
+
+### 🎯 Project Objectives
+
+Design a PL/SQL-based Oracle database with multi-entity support.
+
+Integrate predictive algorithms to forecast hawk behavior.
+
+Build disaster-aware habitat monitoring.
+
+### 🗃️ Main Entities
+Hawk – ID, species, tag info, age
+
+Disaster – Type, severity, location, duration
+
+Location – GPS, terrain, region risk level
+
+Prediction – Timestamp, movement direction, confidence
+
+Weather – Temp, wind, pressure, conditions
+
+### ✅ Anticipated Benefits
+🚀 Real-time hawk movement forecasting
+
+🔒 Secure storage of ecological and disaster data
+
+⚙️ Automated workflows for emergency alerts
+
+📈 Improved conservation strategy and accuracy
+
+
+### PHASE II
+### Business Process Modeling (Related to Management Information Systems - MIS) 
  
- 1. Define the Scope
+### ✅ Defined Scope
 
-Real-Time Disaster Management Information System (DMIS)
-
- Process Being Modeled
-A system for collecting and processing real-time data to identify disasters and coordinate emergency responses across local and international agencies.
-
-  OBJECTIVES
-
-  
-Process live environmental data (e.g., seismic activity, floods, fires).
-Automatically detect disasters and trigger alerts.
-Support informed decision-making via real-time dashboards.
-Facilitate rapid coordination between emergency responders.
-Enable international collaboration during cross-border disasters.
-
-
- Expected Outcomes
-
+### Disaster-Aware Hawk Movement Prediction & Alert System
 
  
-Automated early warning alerts to relevant authorities and the public.
-Improved disaster preparedness and response.
-Effective collaboration between national and international stakeholders.
-
-   Identify Key Entities
-   
-Entity	Role & Responsibilities
-
-Sensor Network	Collects real-time data from the environment (e.g., temperature, water levels, seismic activity).
 
 
-MIS Core System	Aggregates, filters, and analyzes data; identifies potential disasters.
+### Scope:
+This business process models the interaction between wildlife tracking systems, weather data sources, and disaster management authorities.
+The system uses MIS to collect data, run predictive analytics, and disseminate alerts based on hawk movement during natural disasters.
 
+### Objectives:
 
-Disaster Alert System	Sends alerts to emergency responders, citizens, and government agencies.
+Automate hawk tracking during disasters.
 
+Enable data-driven decision-making for wildlife protection.
 
-Emergency Response Agency	Activates response plans, dispatches personnel and equipment, coordinates local rescue and relief.
+Support real-time alerts to conservation and disaster response teams.
 
+### Expected Outcomes:
 
-Government Command Center	Makes strategic decisions, allocates national resources, manages public communication.
+Minimized manual data collection.
 
+Accurate and timely predictions.
 
-International Agencies	Receives shared data for cross-border response coordination and global disaster support.
+Enhanced interdepartmental coordination.
+Scope:
+This business process models the interaction between wildlife tracking systems, weather data sources, and disaster management authorities. The system uses MIS to collect data, run predictive analytics, and disseminate alerts based on hawk movement during natural disasters.
 
+### Objectives:
 
+Automate hawk tracking during disasters.
 
-  Use Swimlanes for Clarity
+Enable data-driven decision-making for wildlife protection.
+
+Support real-time alerts to conservation and disaster response teams.
+
+### Expected Outcomes:
+
+Minimized manual data collection.
+
+Accurate and timely predictions.
+
+Enhanced interdepartmental coordination.
+### ✅ 2. Key Entities and Roles
+  ### Entity	Role / Responsibility
+Wildlife Sensor System            	Collects hawk GPS data in real time.
+Weather API System	                Supplies live weather data (wind, temp, pressure).
+Database (Oracle PL/SQL)          	Stores historical and live hawk movement, weather, and disaster records.
+Prediction Engine	                 Uses data to predict hawk flight patterns in disasters.
+Wildlife Officer                 	 Verifies predictions and issues alerts if necessary.
+Disaster Response Unit	            Uses alerts for evacuation/rescue planning.
+MIS Dashboard                     	Visualizes data for decision-makers and generates automated reports.
+
+### ✅  Swimlane Diagram (BPMN / UML)
   
 The process will be organized into six swimlanes, each representing one of the above entities. This visually distinguishes responsibilities and shows clear hand-offs and data flows across departments and agencies.
 
- Swimlane Layout (Top to Bottom):
-Sensor Network
 
-MIS Core System
+![BPMN_DIAGRAM](https://github.com/user-attachments/assets/80283c43-1099-42db-a8ed-7ba5cb4dcdce)
 
-Disaster Alert System
+Lane 1: Sensor System
 
-Emergency Response Agency
+Lane 2: Weather API
 
-Government Command Center
+Lane 3: Oracle Database
 
-International Agencies
+Lane 4: Prediction Engine
 
-  Apply UML/BPMN Notations
- Key BPMN Elements Used:
-BPMN Symbol	Usage
- Start Event	Start of the data collection process
- Task	An activity such as "Collect Data", "Send Alert", or "Deploy Response Team"
- Gateway	A decision point (e.g., "Is threshold exceeded?")
- End Event	End of the disaster response process
- Sequence Flow	Arrows showing the order of tasks
-Swimlanes	Represent different systems and entities involved
+Lane 5: Wildlife Officer
 
+Lane 6: Disaster Team
 
-<img width="313" alt="BPMN Diagram" src="https://github.com/user-attachments/assets/5dd3ff7d-1765-444d-a09d-3a7e925a26be" />
+Lane 7: MIS Dashboard
+
+### Key BPMN Elements:
+
+Start (hawk enters danger zone)
+
+Tasks: Data collection → Data storage → Prediction → Validation → Alert → Dashboard update
+
+Gateways: Disaster Detected? → Prediction Confirmed?
+
+End: Alert delivered and logged
+
  
-One-Page Explanation
+### ✅ 4. Brief Explanation (One Page)
+### Business Process Explanation
+This model represents an MIS-supported business process for tracking and forecasting hawk movements during disasters. The process begins when hawks enter a potential disaster-affected area. The Sensor System gathers location data, while the Weather API feeds live environmental conditions. All inputs are stored in the Oracle PL/SQL database, forming a centralized information system.
 
+The Prediction Engine applies logic and analytics to forecast hawk movement patterns, identifying high-risk zones. This data is sent to a Wildlife Officer, who reviews and authorizes alerts. If validated, an alert is issued to the Disaster Response Unit, and all interactions are visualized through the MIS Dashboard.
 
-The BPMN diagram models the workflow of a Real-Time Disaster Management Information System (DMIS) designed to detect and respond to environmental disasters. It begins with data collection from a network of environmental sensors that stream live information to the system. The MIS Core System analyzes this data in real-time to detect anomalies that may indicate an impending disaster. If thresholds are exceeded, the system triggers alerts through the Disaster Alert System, which notifies Emergency Response Agencies and the Government Command Center. Emergency responders take swift action by deploying teams and equipment, while the government oversees the national response and makes strategic decisions. If the disaster is large-scale or cross-border, data is automatically shared with International Agencies for broader coordination and support. The system ensures fast, informed decision-making and allows for data-driven, collaborative disaster response. The swimlane structure ensures role clarity, and the logical flow maps all major decisions, responses, and data-sharing activities clearly and consistently, making this system a vital part of modern MIS for crisis management.
+The process supports core MIS functions:
 
+Improves decision-making through accurate predictions.
 
+Streamlines operations with automation.
 
+Supports collaboration between departments.
 
+Maintains historical data for future improvements.
 
-
-
-
+This process is crucial for enhancing wildlife conservation during emergencies and aligning environmental protection with disaster management strategies.
 
 
 ------------------------
@@ -99,32 +181,129 @@ PHASE III
 
 
 
+### 1. Entity-Relationship (ER) Model
+Entities and Attributes
+### Disaster
 
-Logical Data Model Design
-Entity Descriptions
+disaster_id (PK, INTEGER)
 
-Disaster: Tracks disaster details (e.g., type, magnitude, location).
+disaster_type (VARCHAR)
 
-Location: Stores geographical data (e.g., country, state, city).
+severity_level (VARCHAR)
 
-Prediction: Logs disaster predictions (e.g., type, risk level).
+disaster_date (DATE)
 
-Weather Condition: Records weather-related data (e.g., temperature, rainfall).
+location_id (FK, INTEGER)
 
-Preparedness Measure: Explains strategies against disasters.
+### Location
 
-Historical Disaster Data: Maintains past disaster history records.
+location_id (PK, INTEGER)
 
-Entity-Relationship Diagram (ERD)
+region_name (VARCHAR)
+
+latitude (NUMBER)
+
+longitude (NUMBER)
+
+### Hawk
+
+hawk_id (PK, INTEGER)
+
+species (VARCHAR)
+
+tag_id (VARCHAR UNIQUE)
+
+gender (VARCHAR)
+
+age (NUMBER)
+
+### Movement
+
+movement_id (PK, INTEGER)
+
+hawk_id (FK, INTEGER)
+
+timestamp (TIMESTAMP)
+
+location_id (FK, INTEGER)
+
+altitude (NUMBER)
+
+speed (NUMBER)
+
+### Prediction
+
+prediction_id (PK, INTEGER)
+
+hawk_id (FK, INTEGER)
+
+predicted_location_id (FK, INTEGER)
+
+predicted_timestamp (TIMESTAMP)
+
+confidence_level (NUMBER)
+
+### Weather
+
+weather_id (PK, INTEGER)
+
+location_id (FK, INTEGER)
+
+timestamp (TIMESTAMP)
+
+temperature (NUMBER)
+
+humidity (NUMBER)
+
+wind_speed (NUMBER)
+
+
 
 ### The ER diagram will show the types of relationships:
 
 
 <img width="773" alt="ER diagram" src="https://github.com/user-attachments/assets/6205d800-8f11-4d94-ac59-15cbaf278bc8" />
 
-One-to-many relationships between disasters and locations.
-Many-to-one relationships between predictions and locations.
-Many-to-many relationships between historical data, disasters, and locations.
+### 2. Relationships & Constraints
+### One-to-Many:
+
+One Location can be associated with many Disasters.
+
+One Hawk can have many Movements.
+
+One Hawk can have many Predictions.
+
+One Location can have many Weather records.
+
+### Many-to-One:
+
+Many Movements refer to one Location.
+
+Many Predictions refer to one Location.
+
+### Constraints:
+
+NOT NULL on all primary and foreign key fields.
+
+UNIQUE constraint on Hawk tag_id.
+
+CHECK constraints on values like severity_level and confidence_level (e.g., between 0–100).
+
+DEFAULT values for timestamp (e.g., SYSDATE).
+### 3 Normalization Check
+1NF: All attributes have atomic values.
+
+2NF: Non-key attributes depend on the whole primary key.
+
+3NF: No transitive dependencies — attributes depend only on the primary key.
+
+### 4. Real-World Data Scenarios Coverage
+Supports tracking hawk movements and overlaying them with real-time disaster and weather data.
+
+Predictive modeling for hawk migration with confidence intervals.
+
+Disaster-based analysis using location-based filtering and weather impact.
+
 
 
 ---------------------------------------------
@@ -159,6 +338,8 @@ SQL> CREATE PLUGGABLE DATABASE wed_26687_gloria_online_retail_db
 ```
 
 Pluggable database created.
+<img width="891" alt="PDB" src="https://github.com/user-attachments/assets/69d73ac6-7f37-4fa7-b79c-c168b8a47966" />
+
 2.Open the newly created PDB:
 
 ```sql
@@ -197,7 +378,10 @@ SQL> GRANT CONNECT, RESOURCE, DBA, SYSDBA TO anitha;
 ```
 Grant succeeded.
 Use: To assigns full privileges for database operations.
-  
+
+  <img width="662" alt="pdbs" src="https://github.com/user-attachments/assets/85a06a6d-7c38-40a2-97c8-8c447bc62126" />
+<img width="551" alt="pdbss" src="https://github.com/user-attachments/assets/e9728046-ad9c-43df-87e3-c776acf036ac" />
+
 ### Oracle Enterprise Manager (OEM) Setup 
 ### OEM URL to Access:
 ```sql
