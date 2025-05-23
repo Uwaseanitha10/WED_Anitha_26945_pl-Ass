@@ -117,9 +117,10 @@ Historical Disaster Data: Maintains past disaster history records.
 
 Entity-Relationship Diagram (ERD)
 
-The ER diagram will show the types of relationships:
+### The ER diagram will show the types of relationships:
 
 
+<img width="773" alt="ER diagram" src="https://github.com/user-attachments/assets/6205d800-8f11-4d94-ac59-15cbaf278bc8" />
 
 One-to-many relationships between disasters and locations.
 Many-to-one relationships between predictions and locations.
@@ -129,19 +130,66 @@ Many-to-many relationships between historical data, disasters, and locations.
 ---------------------------------------------
 PHASE IV CREATING AND NAMING THE DATABASE
 ---------------------------------------------
-Username: wed_26945_anitha_hawksprediction
-password: anitha
-Physical Database structure
-1. tables created : location, disaster, prediction, hawk_movement, weather_condition
-2.  Relationshps: the tables are related with foreign key to maintain referential intergrity.
-3.  constraints: primary keys , foreign keys, and unique  keys are imposed
 
+
+
+🔖 Covers: Physical DB creation, user access, naming conventions, Oracle OEM setup, GitHub documentation
+
+🎯 Objective
+This phase focuses on building the physical environment for the system designed in Phases I–III. Using Oracle PL/SQL, we establish a named pluggable database, manage user roles, and prepare for monitoring and reporting via Oracle Enterprise Manager (OEM). This foundation allows the logical model to be executed in a real database environment.
+
+🔨Database Creation
+The Pluggable Database (PDB) was created using the following naming format:
+
+Database Name: wed_26945_anitha_hawks_prediction_db
+Username: anitha
+Password: anitha
+Steps Executed in SQL Command Prompt
+1.Create a pluggable database:
+```sql
+SQL> CREATE PLUGGABLE DATABASE wed_26687_gloria_online_retail_db
+  2  ADMIN USER gloria IDENTIFIED BY gloria
+  3    FILE_NAME_CONVERT = (
+  4      'C:\ORACLE21C\ORADATA\ORCL\PDBSEED\',
+  5      'C:\ORACLE21C\ORADATA\ORCL\WED_26687_GLORIA_ONLINE_RETAIL_DB\'
+  6    );
+```
+Pluggable database created.
+2.Open the newly created PDB:
+
+SQL> ALTER PLUGGABLE DATABASE wed_26687_gloria_online_retail_db OPEN;
+
+Pluggable database altered.
+Use Makes the PDB ready for operations.
+3.save the newly created PDB.
+SQL> ALTER PLUGGABLE DATABASE wed_26687_gloria_online_retail_db SAVE STATE;
+
+Pluggable database altered.
+Use It makes sure that the PDB remains open after the database restarts.
+4. Set the Session Container
+SQL> ALTER SESSION SET CONTAINER = wed_26687_gloria_online_retail_db;
+
+Session altered.
+Use: It changes the session to the newly created PDB for subsequent operations.
+5.User Creation and Privilege Assignment
+Create a Database User
+```sql
+SQL> create user gloria identified by gloria;
+
+User created.
+```
+Use: It creates a new user, gloria, with the password gloria.
+Grant Basic Privileges
+SQL> GRANT CONNECT, RESOURCE, DBA, SYSDBA TO gloria;
+
+Grant succeeded.
+Use: To assigns full privileges for database operations.
   
 ### Oracle Enterprise Manager (OEM) Setup 
 ### OEM URL to Access:
 ```sql
 http://localhost:8080/em
-
+```
 <img width="944" alt="OEM" src="https://github.com/user-attachments/assets/675c35e5-cd05-4e51-a928-502b15ca81ef" />
 
 ----------------------------------------------------
