@@ -141,10 +141,13 @@ This phase focuses on building the physical environment for the system designed 
 🔨Database Creation
 The Pluggable Database (PDB) was created using the following naming format:
 
-Database Name: wed_26945_anitha_hawks_prediction_db
+Database Name: wed_26945_anitha_hawks_predictiona_analytics_db
 Username: anitha
+
 Password: anitha
+
 Steps Executed in SQL Command Prompt
+
 1.Create a pluggable database:
 ```sql
 SQL> CREATE PLUGGABLE DATABASE wed_26687_gloria_online_retail_db
@@ -154,34 +157,44 @@ SQL> CREATE PLUGGABLE DATABASE wed_26687_gloria_online_retail_db
   5      'C:\ORACLE21C\ORADATA\ORCL\WED_26687_GLORIA_ONLINE_RETAIL_DB\'
   6    );
 ```
+
 Pluggable database created.
 2.Open the newly created PDB:
 
+```sql
 SQL> ALTER PLUGGABLE DATABASE wed_26687_gloria_online_retail_db OPEN;
-
+```
 Pluggable database altered.
+
 Use Makes the PDB ready for operations.
-3.save the newly created PDB.
-SQL> ALTER PLUGGABLE DATABASE wed_26687_gloria_online_retail_db SAVE STATE;
 
+3.save the newly created PDB.
+
+```sql
+SQL> ALTER PLUGGABLE DATABASE wed_26687_gloria_online_retail_db SAVE STATE;
+```
 Pluggable database altered.
+
 Use It makes sure that the PDB remains open after the database restarts.
 4. Set the Session Container
-SQL> ALTER SESSION SET CONTAINER = wed_26687_gloria_online_retail_db;
-
+```sql
+SQL> ALTER SESSION SET CONTAINER = wed_26945_anitha_hawks_prediction_db;
+```
 Session altered.
+
 Use: It changes the session to the newly created PDB for subsequent operations.
 5.User Creation and Privilege Assignment
 Create a Database User
 ```sql
-SQL> create user gloria identified by gloria;
-
-User created.
+SQL> create user anitha identified by anitha;
 ```
+User created.
+
 Use: It creates a new user, gloria, with the password gloria.
 Grant Basic Privileges
-SQL> GRANT CONNECT, RESOURCE, DBA, SYSDBA TO gloria;
-
+```sql
+SQL> GRANT CONNECT, RESOURCE, DBA, SYSDBA TO anitha;
+```
 Grant succeeded.
 Use: To assigns full privileges for database operations.
   
