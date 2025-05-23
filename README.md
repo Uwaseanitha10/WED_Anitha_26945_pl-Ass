@@ -136,8 +136,13 @@ Physical Database structure
 2.  Relationshps: the tables are related with foreign key to maintain referential intergrity.
 3.  constraints: primary keys , foreign keys, and unique  keys are imposed
 
+  
+### Oracle Enterprise Manager (OEM) Setup 
+### OEM URL to Access:
+```sql
+http://localhost:8080/em
 
-
+<img width="944" alt="OEM" src="https://github.com/user-attachments/assets/675c35e5-cd05-4e51-a928-502b15ca81ef" />
 
 ----------------------------------------------------
 PHASE V: TABLE IMPLEMENTATION AND DATA INSERTION
