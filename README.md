@@ -775,5 +775,63 @@ END AFTER STATEMENT;
 END trg_audit_hawk_movement;
 ```
 
+### ✅  Auditing with Restrictions and Tracking
+### 🗂️ Audit Table:
+```sql
+CREATE TABLE Audit_Log (
+    Log_ID NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    User_ID VARCHAR2(50),
+    Action_Time TIMESTAMP,
+    Operation VARCHAR2(200),
+    Status VARCHAR2(20)
+);
+```
+
+### 📦 Audit Utility Package:
+#### package specification
+```sql
+CREATE OR REPLACE PACKAGE Audit_Utils AS
+  FUNCTION Is_Restricted RETURN BOOLEAN;
+  PROCEDURE Log_Action(op VARCHAR2, stat VARCHAR2);
+END Audit_Utils;
+```
+
+#### Package Body:
+```sql
+CREATE OR REPLACE PACKAGE BODY Audit_Utils AS
+
+  FUNCTION Is_Restricted RETURN BOOLEAN IS
+    v_day VARCHAR2(10);
+    v_count NUMBER;
+  BEGIN
+    SELECT TO_CHAR(SYSDATE, 'DY', 'NLS_DATE_LANGUAGE=ENGLISH') INTO v_day FROM dual;
+
+    SELECT COUNT(*) INTO v_count
+    FROM Public_Holidays
+    WHERE Holiday_Date = TRUNC(SYSDATE)
+      AND Holiday_Date BETWEEN TRUNC(SYSDATE) AND LAST_DAY(ADD_MONTHS(SYSDATE, 1));
+
+    RETURN (v_day IN ('MON', 'TUE', 'WED', 'THU', 'FRI') OR v_count > 0);
+  END;
+
+  PROCEDURE Log_Action(op VARCHAR2, stat VARCHAR2) IS
+  BEGIN
+    INSERT INTO Audit_Log (User_ID, Action_Time, Operation, Status)
+    VALUES (USER, SYSTIMESTAMP, op, stat);
+  END;
+
+END Audit_Utils;
+```
+
+### ✅ Security & System Alignment
+This solution enhances the project’s security, data governance, and trustworthiness by:
+
+❌ Preventing destructive actions during restricted times
+
+✅ Tracking user behavior with full visibility
+
+🤖 Automating enforcement using modular, reusable code
+
+🧩 Supporting MIS objectives by ensuring reliability in operational data
 
 
