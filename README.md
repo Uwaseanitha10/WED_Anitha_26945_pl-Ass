@@ -329,12 +329,13 @@ Steps Executed in SQL Command Prompt
 
 1.Create a pluggable database:
 ```sql
-SQL> CREATE PLUGGABLE DATABASE wed_26687_gloria_online_retail_db
-  2  ADMIN USER gloria IDENTIFIED BY gloria
-  3    FILE_NAME_CONVERT = (
-  4      'C:\ORACLE21C\ORADATA\ORCL\PDBSEED\',
-  5      'C:\ORACLE21C\ORADATA\ORCL\WED_26687_GLORIA_ONLINE_RETAIL_DB\'
-  6    );
+CREATE PLUGGABLE DATABASE WED_26945_Anitha_hawksprediction_pd
+  ADMIN USER = anitha_admin IDENTIFIED BY anitha
+  FILE_NAME_CONVERT (
+    'C:\APP\ANITHA\PRODUCT\21C\ORADATA\XE\PDBSEED\',
+    'C:\APP\ANITHA\PRODUCT\21C\ORADATA\XE\WED_26945_Anitha_hawksprediction_db\'
+  );
+
 ```
 
 Pluggable database created.
@@ -343,7 +344,9 @@ Pluggable database created.
 2.Open the newly created PDB:
 
 ```sql
-SQL> ALTER PLUGGABLE DATABASE wed_26687_gloria_online_retail_db OPEN;
+
+ALTER PLUGGABLE DATABASE WED_26945_Anitha_hawksprediction_pd OPEN;
+
 ```
 Pluggable database altered.
 
@@ -371,7 +374,7 @@ SQL> create user anitha identified by anitha;
 ```
 User created.
 
-Use: It creates a new user, gloria, with the password gloria.
+Use: It creates a new user, anitha, with the password anitha.
 Grant Basic Privileges
 ```sql
 SQL> GRANT CONNECT, RESOURCE, DBA, SYSDBA TO anitha;
@@ -462,7 +465,7 @@ CREATE TABLE Hawk_Movement (
 ###  Data Insertion
 Each table was populated with five realistic data entries, based on environmental and ecological data relevant to Rwanda, where various disasters and hawk movement patterns were recorded. This inserted data reflects typical use cases described in Phase One and supports predictive modeling for disaster response and ecological tracking.
 
-### insert into loacation
+### insert into location
 ```sql
 INSERT INTO Location (Location_ID, Country, State, City)
 VALUES (201, 'Rwanda', 'Kigali City', 'Kigali');
@@ -826,12 +829,12 @@ END Audit_Utils;
 ### ✅ Security & System Alignment
 This solution enhances the project’s security, data governance, and trustworthiness by:
 
-❌ Preventing destructive actions during restricted times
+ Preventing destructive actions during restricted times
 
-✅ Tracking user behavior with full visibility
+ Tracking user behavior with full visibility
 
-🤖 Automating enforcement using modular, reusable code
+ Automating enforcement using modular, reusable code
 
-🧩 Supporting MIS objectives by ensuring reliability in operational data
+ Supporting MIS objectives by ensuring reliability in operational data
 
 
