@@ -7,11 +7,10 @@
 
 ###  Problem Statement and Project Overview
 ### 🔍 Problem Definition
-Frequent natural disasters disrupt hawk migration and habitat safety.
 
-Lack of real-time analytics for conservation efforts during disasters.
 
-Manual tracking leads to data loss and delayed response.
+this project is about to predict hawk migration behavior during natural disasters such as floods and earthquakes. By collecting data on disasters, weather conditions, and hawk movement, the system provides insight to support wildlife conservation and disaster planning. It uses an Oracle PL/SQL-based database to ensure structured, secure, and accurate forecasting.
+
 
 ### 🌍 Context of Use
 Wildlife research centers and disaster management agencies.
