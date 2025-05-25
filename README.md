@@ -58,11 +58,11 @@ Prediction – Timestamp, movement direction, confidence
 Weather – Temp, wind, pressure, conditions
 
 ### ✅ Anticipated Benefits
-🚀 Real-time hawk movement forecasting
+ Real-time hawk movement forecasting
 
-🔒 Secure storage of ecological and disaster data
+ Secure storage of ecological and disaster data
 
-⚙️ Automated workflows for emergency alerts
+ Automated workflows for emergency alerts
 
 📈 Improved conservation strategy and accuracy
 
@@ -736,15 +736,15 @@ DECLARE
     v_today DATE := TRUNC(SYSDATE);
     v_count NUMBER;
 BEGIN
-    -- Get the day name
+    
     SELECT TO_CHAR(v_today, 'DY') INTO v_day FROM dual;
 
-    -- Check if today is in holiday list
+    
     SELECT COUNT(*) INTO v_count
     FROM Public_Holidays
     WHERE Holiday_Date = v_today;
 
-    -- Block if it's a weekday (Mon–Fri) or holiday
+    
     IF v_day IN ('MON', 'TUE', 'WED', 'THU', 'FRI') OR v_count > 0 THEN
         RAISE_APPLICATION_ERROR(-20001, 'Modifications not allowed on weekdays or holidays.');
     END IF;
@@ -755,7 +755,7 @@ END;
 CREATE OR REPLACE TRIGGER trg_audit_hawk_movement
 FOR INSERT OR UPDATE OR DELETE ON Hawk_Movement
 COMPOUND TRIGGER
-    -- Variables to collect audit details
+    
     TYPE t_audit IS TABLE OF VARCHAR2(500) INDEX BY PLS_INTEGER;
     v_log t_audit;
     i INTEGER := 0;
